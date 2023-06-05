@@ -13,6 +13,9 @@ public class GroupProjectEOP {
     @SuppressWarnings("empty-statement")
     public static void main(String[] args) {
       
+        System.out.println("=========================");
+        System.out.println("Welcome to E-Petrol Kiosk");
+        System.out.println("=========================");
         Scanner input = new Scanner(System.in);
         System.out.println("1. Display fuel prices");
         System.out.println("2. Purchase fuel");
