@@ -51,9 +51,20 @@ public class GroupProjectEOP {
             c = input.next().charAt(0);
         }while(c != 'y');
         
-                
+        //Calculate the amount of fuel dispensed      
+        System.out.println("Amount of fuel dispensed:" + amountoffueldispense(price));
+        
+        //Calculate total price
+        System.out.println("Total price:" + price*amountoffueldispense(price));        
     }
     
-    
+    public static double amountoffueldispense (double price){
+        
+        double amount = 0;
+        
+        
+        return amount;
+    }
+
     
 }
