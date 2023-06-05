@@ -48,7 +48,7 @@ public class GroupProjectEOP {
             System.out.println("Type of fuel:" + fuel[n]);
             System.out.println("Price=RM" + price);
             System.out.print("Confrim your choice? (y/n)");
-            c = input.nextLine().charAt(0);
+            c = input.next().charAt(0);
         }while(c != 'y');
         
                 
