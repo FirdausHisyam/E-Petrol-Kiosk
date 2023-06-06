@@ -3,16 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package groupprojecteop;
-import java.util.*;
+import java.io.*;
+import java.util.Scanner;
 /**
  *
- * @author USER
+ * @author FIRDAUS // TRIGGER
  */
 public class GroupProjectEOP {
   
-    @SuppressWarnings("empty-statement")
+  public class PetrolStationManagementSystem {
+    private static final String DATA_FILE = "petrol_data.txt";
+    private static final int DISPENSER_UNITS = 4;
+    private static final int FUEL_TYPES = 4;
+    private static double[][] petrolLevels;
+    
     public static void main(String[] args) {
-      
+        
+        while (true) {
         System.out.println("=========================");
         System.out.println("Welcome to E-Petrol Kiosk");
         System.out.println("=========================");
@@ -57,5 +64,38 @@ public class GroupProjectEOP {
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        
+    }    
 }
+    
+    private static void initializeDataFromFile() {
+      petrolLevels = new double[DISPENSER_UNITS][FUEL_TYPES];
+      
+      try (Scanner input = new Scanner(new File(DATA_FILE))) {
+        for (int i = 0; i < DISPENSER_UNITS; i++) {
+          for (int j = 0; j < FUEL_TYPES; j++) {
+            petrolLevels[i][j] = input.nextDouble();
+          }
+        }
+      } catch (FileNotFoundException e) {
+        System.out.println("File not found. Initializing with default values.");
+        //initialize with default values if file not found
+        for (int i = 0; i < DISPENSER_UNITS; i++) {
+          for (int j = 0; j < FUEL_TYPES; j++) {
+            petrolLevels[i][j] = 100.00;
+          }
+        }
+      }
+      
+    private static void saveDataToFile() {
+      try (PrintWriter writer = new PrintWriter(new FileWriter(DATA_FILE))) {
+        for (int i = 0; i < DISPENSER_UNITS; i++) {
+          for (int j = 0; j < FUEL_TYPES; j++) {
+            writer.print(petrolLevels[i][j] + " ");
+          }
+          writer.println();
+        }
+      } catch (IOException e) {
+        System.out.println("An error occured while saving the data to the file.");
+      }
+    }
+    
