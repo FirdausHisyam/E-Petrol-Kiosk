@@ -93,7 +93,7 @@ public class GroupProjectEOP {
             writer.print(petrolLevels[i][j] + " ");
           }
           writer.println();
-        }
+        } writer.close();
       } catch (IOException e) {
         System.out.println("An error occured while saving the data to the file.");
       }
