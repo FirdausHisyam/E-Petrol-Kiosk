@@ -49,7 +49,7 @@ public class GroupProjectEOP {
                     displayFuelLevel(dispenserUnit, fuelType);
                     break;
                 case 4:
-                    petrolStation.saveDataToFile();
+                    saveDataToFile();
                     System.out.println("Exiting the program...");
                     scanner.close();
                     System.exit(0);
