@@ -67,6 +67,7 @@ public class GroupProjectEOP {
     }    
 }
     
+    
     private static void initializeDataFromFile() {
       petrolLevels = new double[DISPENSER_UNITS][FUEL_TYPES];
       
@@ -85,6 +86,7 @@ public class GroupProjectEOP {
           }
         }
       }
+    
       
     private static void saveDataToFile() {
       try (PrintWriter writer = new PrintWriter(new FileWriter(DATA_FILE))) {
@@ -98,4 +100,47 @@ public class GroupProjectEOP {
         System.out.println("An error occured while saving the data to the file.");
       }
     }
-    
+   
+      
+    public static void displayFuelPrices() {
+      System.out.println("Current fuel prices per Litre:");
+      System.out.println("1. RON95: RM2.05");
+      System.out.println("2. RON97: RM3.35");
+      System.out.println("3. RON100: RM4.15");
+      System.out.println("4. Diesel: RM2.15");
+    }
+  
+      
+    public static void purchaseFuel(int dispenserUnit, int fuelType, double amount) {
+      double price = 0.0;
+      
+      switch (fuelType) {
+        case 1:
+          price = 2.05;
+          break;
+        case 2:
+          price = 3.35;
+          break;
+        case 3:
+          price = 4.15;
+          break;
+        case 4:
+          price = 2.15;
+          break;
+        default:
+          System.out.println("Invalid fuel type.);
+          return;
+       }
+      
+      double litres = amount / price;
+      petrolLevels[dispenserUnit - 1][fuelType - 1] -= litres;
+                             
+      System.out.printf("Filled %.2f litres of fuel. Total price: RM%.2f\n", litres, amount);
+  }
+                             
+     
+   private static void displayFuelLevel(int dispenserUnit, int fuelType) {
+     double fuelLevel = petrolLevels[dispenserUnit - 1][fuelType - 1];
+     System.out.printf("Fuel level at dispenser unit %d for fuel type %d: %.2f litres\n", dispenserUnit, fuelType, fuelLevel);
+   }
+}
