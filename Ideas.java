@@ -82,7 +82,7 @@ public class GroupProjectEOP {
         //initialize with default values if file not found
         for (int i = 0; i < DISPENSER_UNITS; i++) {
           for (int j = 0; j < FUEL_TYPES; j++) {
-            petrolLevels[i][j] = 100.00;
+            petrolLevels[i][j] = 500.00;
           }
         }
       }
