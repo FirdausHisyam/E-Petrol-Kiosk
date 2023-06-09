@@ -133,7 +133,7 @@ public class GroupProjectEOP {
        }
       
       double litres = amount / price;
-      petrolLevels[dispenserUnit - 1][fuelType - 1] -= litres;
+      petrolLevels[dispenserUnit - 1][fuelType - 1] -= litres; ////minus one to ensure proper numbering starting from 1 instead of 0, ease of usage for users
                              
       System.out.printf("Filled %.2f litres of fuel. Total price: RM%.2f\n", litres, amount);
   }
