@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 /**
  *
- * @author Firdaus | Trigger
+ * @author Trigger
  */
 public class EPetrolKiosk {
 
@@ -49,7 +49,8 @@ public class EPetrolKiosk {
                         dispenserUnit = input.nextInt();
                         System.out.print("Enter fuel type number: ");
                         fuelType = input.nextInt();
-                        displayFuelLevel(dispenserUnit, fuelType);
+                        double fuelLevel = getFuelLevel(dispenserUnit, fuelType);
+                        System.out.printf("Fuel level at dispenser unit %d for fuel type %d: %.2f litres\n", dispenserUnit, fuelType, fuelLevel);
                         break;
                     case 4:
                         saveDataToFile();
@@ -131,8 +132,8 @@ public class EPetrolKiosk {
             System.out.printf("Filled %.2f litres of fuel. Total price: RM%.2f\n", litres, amount);
         }
 
-        private static void displayFuelLevel(int dispenserUnit, int fuelType) {
+        public static double getFuelLevel(int dispenserUnit, int fuelType) {
             double fuelLevel = petrolLevels[dispenserUnit - 1][fuelType - 1];
-            System.out.printf("Fuel level at dispenser unit %d for fuel type %d: %.2f litres\n", dispenserUnit, fuelType, fuelLevel);
+            return fuelLevel;
         }
 }
