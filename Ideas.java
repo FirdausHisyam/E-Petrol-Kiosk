@@ -16,7 +16,8 @@ public class GroupProjectEOP {
     private static final int DISPENSER_UNITS = 4;
     private static final int FUEL_TYPES = 4;
     private static double[][] petrolLevels;
-    
+
+    //main method
     public static void main(String[] args) {
         
         while (true) {
@@ -32,7 +33,8 @@ public class GroupProjectEOP {
       
       /*side note, we use 2D arrays to track dispenser unit and fuel type (0 for RON95, 1 for RON97, 2 for Diesel)
       ex. petrolLevels = new double[3][3] (assuming there are 3 dispenser units and 3 fuel types)*/
-
+          
+        //input from user determine what they want to do base on the option given
         int choice = scanner.nextInt();
 
           switch (choice) {
@@ -67,7 +69,7 @@ public class GroupProjectEOP {
     }    
 }
     
-    
+    //method that read data from file
     private static void initializeDataFromFile() {
       petrolLevels = new double[DISPENSER_UNITS][FUEL_TYPES];
       
@@ -87,7 +89,7 @@ public class GroupProjectEOP {
         }
       }
     
-      
+      //save data to file
     private static void saveDataToFile() {
       try (PrintWriter writer = new PrintWriter(new FileWriter(DATA_FILE))) {
         for (int i = 0; i < DISPENSER_UNITS; i++) {
@@ -101,7 +103,7 @@ public class GroupProjectEOP {
       }
     }
    
-      
+    //choice 1: displaying all the fuel available with it prices
     public static void displayFuelPrices() {
       System.out.println("Current fuel prices per Litre:");
       System.out.println("1. RON95: RM2.05");
@@ -110,10 +112,11 @@ public class GroupProjectEOP {
       System.out.println("4. Diesel: RM2.15");
     }
   
-      
+    //choice 2: process of purchasing fuel
     public static void purchaseFuel(int dispenserUnit, int fuelType, double amount) {
       double price = 0.0;
-      
+
+      //different fuel type will give different price
       switch (fuelType) {
         case 1:
           price = 2.05;
@@ -131,14 +134,15 @@ public class GroupProjectEOP {
           System.out.println("Invalid fuel type.);
           return;
        }
-      
+
+      //counting total fuel(litre) bought by the user
       double litres = amount / price;
       petrolLevels[dispenserUnit - 1][fuelType - 1] -= litres; ////minus one to ensure proper numbering starting from 1 instead of 0, ease of usage for users
                              
       System.out.printf("Filled %.2f litres of fuel. Total price: RM%.2f\n", litres, amount);
   }
                              
-     
+   //display current fuel level in the system(file)
    private static void displayFuelLevel(int dispenserUnit, int fuelType) {
      double fuelLevel = petrolLevels[dispenserUnit - 1][fuelType - 1];
      System.out.printf("Fuel level at dispenser unit %d for fuel type %d: %.2f litres\n", dispenserUnit, fuelType, fuelLevel);
